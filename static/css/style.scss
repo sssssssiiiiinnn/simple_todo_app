@@ -1,0 +1,225 @@
+@import "mixin";
+
+$cWhite: white;
+$cBlack: black;
+#container {
+  transition: all 1s;
+}
+
+.header {
+  background-color: $cWhite;
+  height: 100px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.mobile-menu {
+  position: fixed;
+  right: 0px;
+  top: 60px;
+  width: 300px;
+  &__item {
+    list-style: none;
+    opacity: 0;
+    transition: all 1s;
+    font-weight: 600;
+    margin-bottom: 0.8px;
+  }
+  &__link {
+    text-decoration: none;
+    pointer-events: none;
+    & .main-title {
+      color: rgb(49, 49, 49);
+      font-size: 25px;
+    }
+    & .sub-title {
+      color: rgb(107, 106, 106);
+      display: block;
+      font-size: 13px;
+      margin-bottom: 11px;
+    }
+  }
+}
+
+.mobile-menu__btn {
+  background-color: transparent;
+  display: block;
+  border: none;
+  outline: none !important;
+  cursor: pointer;
+  & > span {
+    background-color: $cBlack;
+    display: block;
+    width: 35px;
+    height: 2px;
+    margin-bottom: 9px;
+  }
+  &:nth-child(3) {
+    margin-bottom: 0px;
+  }
+}
+
+.hero {
+  height: 500px;
+  overflow: hidden;
+  & > img {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    transform: scale(1.3);
+    transition: all 1.8s ease;
+  }
+  &__title {
+    color: $cWhite;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    z-index: 2;
+  }
+  &__footer {
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    transform: translateX(-50%);
+    height: 68px;
+    width: 22px;
+    overflow: hidden;
+  }
+  &__downarrow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 6px;
+    @include animation($name: kf-arrow-anime, $iteration-count: infinite);
+  }
+  &__scrolltext {
+    position: absolute;
+    transform: rotate(90deg);
+    left: -8px;
+    top: 11px;
+    font-size: 1.2em;
+    color: $cWhite;
+  }
+}
+
+@keyframes kf-arrow-anime {
+  0%,
+  50%,
+  100% {
+    transform: translateY(-10%);
+  }
+  30% {
+    transform: none;
+  }
+}
+
+.menu-open {
+  & #container {
+    transform: translateX(-300px);
+    box-shadow: 0 8px 40px -10px rgba(7, 7, 7, 0.8);
+  }
+  & .mobile-menu {
+    &__item {
+      transform: none;
+      opacity: 0.8;
+    }
+    &__link {
+      pointer-events: auto;
+    }
+  }
+}
+.todo-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+.btn.cubic {
+  position: relative;
+  display: inline-block;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  width: 150px;
+  height: 50px;
+  margin: 0 auto;
+  cursor: pointer;
+  & span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    line-height: 48px;
+    text-align: center;
+    transition: all 0.3s;
+    transform-origin: center center -25px;
+  }
+
+  & .hovering {
+    background-color: $cBlack;
+    color: $cWhite;
+    transform: rotateX(90deg);
+  }
+
+  & .default {
+    background-color: $cWhite;
+    color: $cBlack;
+    transform: rotateX(0deg);
+  }
+
+  &:hover {
+    & .hovering {
+      transform: rotateX(0);
+    }
+    & .default {
+      transform: rotateX(-90deg);
+    }
+  }
+}
+
+.btn.slide-bg {
+  background-color: $cWhite;
+  color: $cBlack;
+  border: 1px solid $cBlack;
+  padding: 10px 40px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: $cBlack;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: -1;
+  }
+  &:hover {
+    color: white;
+    &::before {
+      transform: none;
+    }
+  }
+}
+
+.form {
+  margin-top: 100px;
+}
+
+.footer {
+  height: 200px;
+}
+
+.container.table {
+  margin-top: 100px;
+}
